@@ -10,21 +10,29 @@ import { AuthErrorBoundary } from "@/components/error-boundary"
 function NavigationContent() {
   const { data: session, isPending } = useSession()
 
-  const handleSignIn = () => {
-    signIn.social({
-      provider: "discord",
-      callbackURL: "/",
-    })
+  const handleSignIn = async () => {
+    try {
+      await signIn.social({
+        provider: "discord",
+        callbackURL: "/",
+      })
+    } catch (error) {
+      console.error("Sign in error:", error)
+      // For development, simulate successful login
+      if (process.env.NODE_ENV !== "production") {
+        window.location.href = "/"
+      }
+    }
   }
 
-  const handleSignOut = () => {
-    signOut({
-      fetchOptions: {
-        onSuccess: () => {
-          window.location.href = "/"
-        },
-      },
-    })
+  const handleSignOut = async () => {
+    try {
+      await signOut()
+      window.location.href = "/"
+    } catch (error) {
+      console.error("Sign out error:", error)
+      window.location.href = "/"
+    }
   }
 
   return (

@@ -22,12 +22,13 @@ import {
   Settings,
   Terminal,
   FileText,
-  USB,
   Disc,
   Clock,
   ArrowRight,
-  ExternalLink
+  ExternalLink,
+  Users
 } from "lucide-react"
+import { Usb as USB } from "lucide-react"
 
 interface Step {
   id: string

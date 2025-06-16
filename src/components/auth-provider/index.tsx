@@ -2,13 +2,13 @@
 
 import { useEffect, useState, createContext, useContext } from "react"
 import { useSession, signOut } from "@/lib/auth-client"
-import { usePathname, useRouter } from "next/navigation"
+import { useRouter } from "next/navigation"
 
 // Create a context to provide authentication-related information
 export const AuthContext = createContext<{
   isAuthenticated: boolean
   isLoading: boolean
-  user: any | null
+  user: Record<string, unknown> | null
   logout: () => Promise<void>
 }>({
   isAuthenticated: false,
@@ -21,29 +21,28 @@ export const AuthContext = createContext<{
 export const useAuth = () => useContext(AuthContext)
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
-  const { data: session, status } = useSession()
-  const pathname = usePathname()
+  const { data: session, isPending } = useSession()
   const router = useRouter()
   
   // Define authentication state
   const [state, setState] = useState({
-    isAuthenticated: status === "authenticated",
-    isLoading: status === "loading",
+    isAuthenticated: !!session?.user,
+    isLoading: isPending,
     user: session?.user || null,
   })
 
   // Update state when session changes
   useEffect(() => {
     setState({
-      isAuthenticated: status === "authenticated",
-      isLoading: status === "loading",
+      isAuthenticated: !!session?.user,
+      isLoading: isPending,
       user: session?.user || null,
     })
-  }, [session, status])
+  }, [session, isPending])
 
   // Logout function
   const logout = async () => {
-    await signOut({ callbackURL: "/" })
+    await signOut()
     setState((prev) => ({ ...prev, isAuthenticated: false, user: null }))
     router.push("/")
   }

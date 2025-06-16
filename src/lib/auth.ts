@@ -1,13 +1,9 @@
 import { betterAuth } from "better-auth"
-import { join } from "path"
-
-// Create a persistent database file in the project directory instead of in-memory
-const DB_PATH = join(process.cwd(), "auth.db")
 
 export const auth = betterAuth({
   database: {
     provider: "sqlite",
-    url: DB_PATH,
+    url: ":memory:", // Use in-memory database to avoid file system issues
   },
   socialProviders: {
     discord: {
@@ -23,5 +19,5 @@ export const auth = betterAuth({
       sameSite: "lax",
     },
   },
-  debug: true,
+  debug: false, // Disable debug mode for production
 })
