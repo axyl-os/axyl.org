@@ -37,9 +37,11 @@ export default function HomePage() {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Button size="lg" className="text-base px-8">
-              <Download className="h-5 w-5 mr-2" />
-              Download AxylOS
+            <Button size="lg" className="text-base px-8" asChild>
+              <Link href="/download">
+                <Download className="h-5 w-5 mr-2" />
+                Download AxylOS
+              </Link>
             </Button>
             <Button variant="outline" size="lg" asChild>
               <Link href="/docs">
@@ -151,9 +153,11 @@ export default function HomePage() {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Button size="lg" className="text-base px-8">
-              <Download className="h-5 w-5 mr-2" />
-              Download Now
+            <Button size="lg" className="text-base px-8" asChild>
+              <Link href="/download">
+                <Download className="h-5 w-5 mr-2" />
+                Download Now
+              </Link>
             </Button>
             <Button variant="outline" size="lg" asChild>
               <Link href="https://github.com/axyl-os" target="_blank">

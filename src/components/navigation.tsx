@@ -4,7 +4,7 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { useSession, signIn, signOut } from "@/lib/auth-client"
-import { Terminal, FileText, BookOpen, LogIn, LogOut, User } from "lucide-react"
+import { Terminal, FileText, BookOpen, LogIn, LogOut, User, Download } from "lucide-react"
 import { AuthErrorBoundary } from "@/components/error-boundary"
 
 function NavigationContent() {
@@ -37,6 +37,13 @@ function NavigationContent() {
           </Link>
           
           <div className="hidden md:flex items-center space-x-6">
+            <Link 
+              href="/download" 
+              className="flex items-center space-x-1 text-muted-foreground hover:text-foreground transition-colors"
+            >
+              <Download className="h-4 w-4" />
+              <span>Download</span>
+            </Link>
             <Link 
               href="/docs" 
               className="flex items-center space-x-1 text-muted-foreground hover:text-foreground transition-colors"

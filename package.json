@@ -15,6 +15,7 @@
     "@radix-ui/react-label": "^2.1.7",
     "@radix-ui/react-navigation-menu": "^1.2.13",
     "@radix-ui/react-slot": "^1.2.3",
+    "@radix-ui/react-tabs": "^1.1.12",
     "@sentry/react": "^9.29.0",
     "@types/better-sqlite3": "^7.6.13",
     "@vercel/analytics": "^1.5.0",
