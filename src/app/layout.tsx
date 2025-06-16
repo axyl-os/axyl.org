@@ -4,6 +4,7 @@ import "./globals.css";
 import { Navigation } from "@/components/navigation";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/next";
+import { AuthProvider } from "@/components/auth-provider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,12 +32,14 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Navigation />
-        <main className="pt-16">
-          {children}
-          <SpeedInsights />
-          <Analytics />
-        </main>
+        <AuthProvider>
+          <Navigation />
+          <main className="pt-16">
+            {children}
+            <SpeedInsights />
+            <Analytics />
+          </main>
+        </AuthProvider>
       </body>
     </html>
   );

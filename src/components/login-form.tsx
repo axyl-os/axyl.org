@@ -7,11 +7,17 @@ import { signIn } from "@/lib/auth-client"
 export function LoginForm({
   ...props
 }: React.ComponentProps<"div">) {
-  const handleDiscordSignIn = () => {
-    signIn.social({
-      provider: "discord",
-      callbackURL: "/",
-    })
+  const handleDiscordSignIn = async () => {
+    try {
+      console.log("Starting Discord sign-in process");
+      await signIn.social({
+        provider: "discord",
+        callbackURL: "/",
+      });
+      console.log("Sign-in process initiated");
+    } catch (error) {
+      console.error("Error during Discord sign-in:", error);
+    }
   }
 
   return (
@@ -30,8 +36,9 @@ export function LoginForm({
       <div className="flex flex-col gap-4">
         <Button 
           onClick={handleDiscordSignIn}
-          className="w-full"
+          className="w-full relative"
           size="lg"
+          data-testid="discord-login-button"
         >
           <svg 
             className="w-5 h-5 mr-2" 
