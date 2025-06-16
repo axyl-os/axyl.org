@@ -1,6 +1,8 @@
 onlyBuiltDependencies:
-  - '@tailwindcss/oxide'
+  - "@tailwindcss/oxide"
+  - "@vercel/speed-insights"
   - esbuild
   - sharp
   - unrs-resolver
   - workerd
+  - better-sqlite3

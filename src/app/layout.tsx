@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Navigation } from "@/components/navigation";
+import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Analytics } from "@vercel/analytics/next";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -15,7 +17,8 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "AxylOS - A Beautiful Arch-based Linux Distribution",
-  description: "AxylOS is a beautiful, user-friendly Arch-based Linux distribution designed for desktop users who want power and simplicity.",
+  description:
+    "AxylOS is a beautiful, user-friendly Arch-based Linux distribution designed for desktop users who want power and simplicity.",
 };
 
 export default function RootLayout({
@@ -31,6 +34,8 @@ export default function RootLayout({
         <Navigation />
         <main className="pt-16">
           {children}
+          <SpeedInsights />
+          <Analytics />
         </main>
       </body>
     </html>
