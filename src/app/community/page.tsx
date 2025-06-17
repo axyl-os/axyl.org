@@ -321,7 +321,7 @@ export default function CommunityPage() {
                     </div>
                   </div>
                   <Button className="w-full" asChild>
-                    <Link href="https://discord.gg/axyl" target="_blank">
+                    <Link href="https://awfixer.link/discord" target="_blank">
                       <MessageCircle className="h-4 w-4 mr-2" />
                       Join Discord Server
                       <ExternalLink className="h-4 w-4 ml-2" />
@@ -504,7 +504,7 @@ export default function CommunityPage() {
                 </div>
 
                 <Button className="w-full mt-4" asChild>
-                  <Link href="https://discord.gg/axyl" target="_blank">
+                  <Link href="https://awfixer.link/discord" target="_blank">
                     <MessageCircle className="h-4 w-4 mr-2" />
                     Join Our Discord
                     <ExternalLink className="h-4 w-4 ml-2" />
