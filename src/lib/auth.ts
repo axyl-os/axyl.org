@@ -1,4 +1,4 @@
-import { betterAuth } from "better-auth"
+import { betterAuth } from "better-auth";
 
 export const auth = betterAuth({
   database: {
@@ -8,7 +8,8 @@ export const auth = betterAuth({
   socialProviders: {
     discord: {
       clientId: process.env.DISCORD_CLIENT_ID || "placeholder-client-id",
-      clientSecret: process.env.DISCORD_CLIENT_SECRET || "placeholder-client-secret",
+      clientSecret:
+        process.env.DISCORD_CLIENT_SECRET || "placeholder-client-secret",
     },
   },
   secret: process.env.BETTER_AUTH_SECRET || "fallback-secret-key",
@@ -19,5 +20,5 @@ export const auth = betterAuth({
       sameSite: "lax",
     },
   },
-  debug: false, // Disable debug mode for production
-})
+  debug: process.env.NODE_ENV !== "production", // Enable debug mode for development
+});
