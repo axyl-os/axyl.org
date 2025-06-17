@@ -5,7 +5,7 @@ A beautiful, modern website for AxylOS - an Arch-based Linux distribution design
 ## Features
 
 - **Modern Design**: Clean, responsive UI built with Next.js and Tailwind CSS
-- **Discord Authentication**: Secure login using Discord OAuth via better-auth
+- **Discord Authentication**: Secure login using Discord OAuth via Supabase Auth
 - **Documentation**: Comprehensive docs section for users
 - **Blog**: News and updates from the AxylOS team
 - **Community Focus**: Built to connect and support the AxylOS community
@@ -13,10 +13,10 @@ A beautiful, modern website for AxylOS - an Arch-based Linux distribution design
 ## Tech Stack
 
 - **Framework**: Next.js 15.3 with App Router
-- **Authentication**: better-auth with Discord provider
+- **Authentication**: Supabase Auth with Discord provider
 - **Styling**: Tailwind CSS with custom design system
 - **UI Components**: Radix UI primitives with custom styling
-- **Database**: SQLite with better-auth
+- **Database**: PostgreSQL with Supabase
 - **Icons**: Lucide React
 - **Animations**: Framer Motion
 
@@ -95,7 +95,7 @@ axyl.org/
 │   │   ├── navigation.tsx   # Main navigation
 │   │   └── login-form.tsx   # Login form
 │   └── lib/                # Utility functions and configurations
-│       ├── auth.ts         # better-auth configuration
+│       ├── auth.ts         # Supabase auth configuration
 │       ├── auth-client.ts  # Client-side auth helpers
 │       └── utils.ts        # General utilities
 ├── public/                 # Static assets
@@ -104,12 +104,13 @@ axyl.org/
 
 ## Authentication Flow
 
-The website uses better-auth with Discord OAuth:
+The website uses Supabase Auth with Discord OAuth:
+
 
 1. User clicks "Sign In with Discord"
 2. Redirects to Discord OAuth
 3. Discord redirects back with authorization code
-4. better-auth exchanges code for user info
+4. Supabase Auth exchanges code for user info
 5. User session is created and stored
 6. User can access authenticated features
 

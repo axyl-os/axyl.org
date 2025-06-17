@@ -1,17 +1,23 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Alert, AlertDescription } from "@/components/ui/alert"
-import { Avatar, AvatarFallback } from "@/components/ui/avatar"
-import { useSession } from "@/lib/auth-client"
-import { 
-  Users, 
-  MessageCircle, 
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { useAuth } from "@/components/auth-provider";
+import {
+  Users,
+  MessageCircle,
   Github,
   Heart,
   Star,
@@ -31,47 +37,47 @@ import {
   Activity,
   Target,
   Sparkles,
-  Shield
-} from "lucide-react"
+  Shield,
+} from "lucide-react";
 
 interface CommunityStats {
-  totalMembers: number
-  onlineMembers: number
-  totalPosts: number
-  activeToday: number
-  githubStars: number
-  githubForks: number
+  totalMembers: number;
+  onlineMembers: number;
+  totalPosts: number;
+  activeToday: number;
+  githubStars: number;
+  githubForks: number;
 }
 
 interface DiscordChannel {
-  id: string
-  name: string
-  topic: string
-  memberCount: number
-  isActive: boolean
-  category: string
+  id: string;
+  name: string;
+  topic: string;
+  memberCount: number;
+  isActive: boolean;
+  category: string;
 }
 
 interface CommunityEvent {
-  id: string
-  title: string
-  description: string
-  date: string
-  time: string
-  type: "meeting" | "workshop" | "release" | "social"
-  location: "Discord" | "Online" | "Hybrid"
-  attendees: number
-  maxAttendees?: number
+  id: string;
+  title: string;
+  description: string;
+  date: string;
+  time: string;
+  type: "meeting" | "workshop" | "release" | "social";
+  location: "Discord" | "Online" | "Hybrid";
+  attendees: number;
+  maxAttendees?: number;
 }
 
 interface ContributorSpotlight {
-  id: string
-  name: string
-  avatar: string
-  role: string
-  contributions: string[]
-  joinDate: string
-  githubUsername: string
+  id: string;
+  name: string;
+  avatar: string;
+  role: string;
+  contributions: string[];
+  joinDate: string;
+  githubUsername: string;
 }
 
 const communityStats: CommunityStats = {
@@ -80,8 +86,8 @@ const communityStats: CommunityStats = {
   totalPosts: 89372,
   activeToday: 432,
   githubStars: 2847,
-  githubForks: 394
-}
+  githubForks: 394,
+};
 
 const discordChannels: DiscordChannel[] = [
   {
@@ -90,7 +96,7 @@ const discordChannels: DiscordChannel[] = [
     topic: "General discussion about AxylOS",
     memberCount: 12847,
     isActive: true,
-    category: "General"
+    category: "General",
   },
   {
     id: "help",
@@ -98,7 +104,7 @@ const discordChannels: DiscordChannel[] = [
     topic: "Get help with installation and troubleshooting",
     memberCount: 8932,
     isActive: true,
-    category: "Support"
+    category: "Support",
   },
   {
     id: "development",
@@ -106,7 +112,7 @@ const discordChannels: DiscordChannel[] = [
     topic: "Development discussions and contributions",
     memberCount: 2847,
     isActive: true,
-    category: "Development"
+    category: "Development",
   },
   {
     id: "customization",
@@ -114,7 +120,7 @@ const discordChannels: DiscordChannel[] = [
     topic: "Show off your desktop customizations",
     memberCount: 6543,
     isActive: true,
-    category: "Showcase"
+    category: "Showcase",
   },
   {
     id: "offtopic",
@@ -122,71 +128,82 @@ const discordChannels: DiscordChannel[] = [
     topic: "Anything not related to AxylOS",
     memberCount: 5678,
     isActive: false,
-    category: "Social"
-  }
-]
+    category: "Social",
+  },
+];
 
 const upcomingEvents: CommunityEvent[] = [
   {
     id: "community-meeting",
     title: "Monthly Community Meeting",
-    description: "Join us for our monthly community meeting to discuss upcoming features, community feedback, and Q&A with the development team.",
+    description:
+      "Join us for our monthly community meeting to discuss upcoming features, community feedback, and Q&A with the development team.",
     date: "2024-03-15",
     time: "18:00 UTC",
     type: "meeting",
     location: "Discord",
     attendees: 89,
-    maxAttendees: 200
+    maxAttendees: 200,
   },
   {
     id: "customization-workshop",
     title: "Desktop Customization Workshop",
-    description: "Learn how to customize your AxylOS desktop with themes, icons, and advanced configurations.",
+    description:
+      "Learn how to customize your AxylOS desktop with themes, icons, and advanced configurations.",
     date: "2024-03-20",
     time: "16:00 UTC",
     type: "workshop",
     location: "Online",
     attendees: 34,
-    maxAttendees: 50
+    maxAttendees: 50,
   },
   {
     id: "release-party",
     title: "AxylOS 2024.3 Release Party",
-    description: "Celebrate the launch of AxylOS 2024.3 with the community! We'll showcase new features and have fun activities.",
+    description:
+      "Celebrate the launch of AxylOS 2024.3 with the community! We'll showcase new features and have fun activities.",
     date: "2024-03-25",
     time: "20:00 UTC",
     type: "release",
     location: "Discord",
     attendees: 156,
-    maxAttendees: 500
-  }
-]
-
-
+    maxAttendees: 500,
+  },
+];
 
 export default function CommunityPage() {
-  const { data: session } = useSession()
-  const [activeTab, setActiveTab] = useState("overview")
+  const { isAuthenticated, user } = useAuth();
+  const [activeTab, setActiveTab] = useState("overview");
 
-  const getEventIcon = (type: CommunityEvent['type']) => {
+  const getEventIcon = (type: CommunityEvent["type"]) => {
     switch (type) {
-      case 'meeting': return <Users className="h-4 w-4" />
-      case 'workshop': return <BookOpen className="h-4 w-4" />
-      case 'release': return <Sparkles className="h-4 w-4" />
-      case 'social': return <Coffee className="h-4 w-4" />
-      default: return <Calendar className="h-4 w-4" />
+      case "meeting":
+        return <Users className="h-4 w-4" />;
+      case "workshop":
+        return <BookOpen className="h-4 w-4" />;
+      case "release":
+        return <Sparkles className="h-4 w-4" />;
+      case "social":
+        return <Coffee className="h-4 w-4" />;
+      default:
+        return <Calendar className="h-4 w-4" />;
     }
-  }
+  };
 
-  const getEventColor = (type: CommunityEvent['type']) => {
+  const getEventColor = (type: CommunityEvent["type"]) => {
     switch (type) {
-      case 'meeting': return 'bg-blue-100 text-blue-700'
-      case 'workshop': return 'bg-green-100 text-green-700'
-      case 'release': return 'bg-purple-100 text-purple-700'
-      case 'social': return 'bg-orange-100 text-orange-700'
-      default: return 'bg-gray-100 text-gray-700'
+      case "meeting":
+        return "bg-blue-100 text-blue-700";
+      case "workshop":
+        return "bg-green-100 text-green-700";
+      case "release":
+        return "bg-purple-100 text-purple-700";
+      case "social":
+        return "bg-orange-100 text-orange-700";
+      default:
+        return "bg-gray-100 text-gray-700";
     }
-  }
+  };
 
   return (
     <div className="min-h-screen py-8 px-4">
@@ -197,14 +214,14 @@ export default function CommunityPage() {
             <Users className="h-3 w-3 mr-1" />
             Community
           </Badge>
-          
+
           <h1 className="text-4xl md:text-5xl font-bold mb-4">
             AxylOS Community
           </h1>
-          
+
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Join our vibrant community of Linux enthusiasts, developers, and users. 
-            Connect, learn, and contribute to the future of AxylOS.
+            Join our vibrant community of Linux enthusiasts, developers, and
+            users. Connect, learn, and contribute to the future of AxylOS.
           </p>
         </div>
 
@@ -213,35 +230,47 @@ export default function CommunityPage() {
           <Card>
             <CardContent className="pt-6">
               <div className="text-center">
-                <div className="text-2xl font-bold text-primary">{communityStats.totalMembers.toLocaleString()}</div>
-                <div className="text-sm text-muted-foreground">Total Members</div>
+                <div className="text-2xl font-bold text-primary">
+                  {communityStats.totalMembers.toLocaleString()}
+                </div>
+                <div className="text-sm text-muted-foreground">
+                  Total Members
+                </div>
               </div>
             </CardContent>
           </Card>
-          
+
           <Card>
             <CardContent className="pt-6">
               <div className="text-center">
-                <div className="text-2xl font-bold text-green-600">{communityStats.onlineMembers.toLocaleString()}</div>
+                <div className="text-2xl font-bold text-green-600">
+                  {communityStats.onlineMembers.toLocaleString()}
+                </div>
                 <div className="text-sm text-muted-foreground">Online Now</div>
               </div>
             </CardContent>
           </Card>
-          
+
           <Card>
             <CardContent className="pt-6">
               <div className="text-center">
-                <div className="text-2xl font-bold text-blue-600">{communityStats.totalPosts.toLocaleString()}</div>
+                <div className="text-2xl font-bold text-blue-600">
+                  {communityStats.totalPosts.toLocaleString()}
+                </div>
                 <div className="text-sm text-muted-foreground">Total Posts</div>
               </div>
             </CardContent>
           </Card>
-          
+
           <Card>
             <CardContent className="pt-6">
               <div className="text-center">
-                <div className="text-2xl font-bold text-orange-600">{communityStats.activeToday.toLocaleString()}</div>
-                <div className="text-sm text-muted-foreground">Active Today</div>
+                <div className="text-2xl font-bold text-orange-600">
+                  {communityStats.activeToday.toLocaleString()}
+                </div>
+                <div className="text-sm text-muted-foreground">
+                  Active Today
+                </div>
               </div>
             </CardContent>
           </Card>
@@ -273,12 +302,19 @@ export default function CommunityPage() {
                 <CardContent className="relative space-y-4">
                   <div className="flex items-center justify-between">
                     <div>
-                      <div className="text-2xl font-bold">{communityStats.onlineMembers.toLocaleString()}</div>
-                      <div className="text-sm text-muted-foreground">members online</div>
+                      <div className="text-2xl font-bold">
+                        {communityStats.onlineMembers.toLocaleString()}
+                      </div>
+                      <div className="text-sm text-muted-foreground">
+                        members online
+                      </div>
                     </div>
                     <div className="flex -space-x-2">
                       {[1, 2, 3, 4].map((i) => (
-                        <Avatar key={i} className="w-8 h-8 border-2 border-background">
+                        <Avatar
+                          key={i}
+                          className="w-8 h-8 border-2 border-background"
+                        >
                           <AvatarFallback>U{i}</AvatarFallback>
                         </Avatar>
                       ))}
@@ -324,7 +360,10 @@ export default function CommunityPage() {
                     </div>
                   </div>
                   <Button variant="outline" className="w-full" asChild>
-                    <Link href="https://github.com/axyl-os/axyl" target="_blank">
+                    <Link
+                      href="https://github.com/axyl-os/axyl"
+                      target="_blank"
+                    >
                       <Github className="h-4 w-4 mr-2" />
                       View on GitHub
                       <ExternalLink className="h-4 w-4 ml-2" />
@@ -348,9 +387,7 @@ export default function CommunityPage() {
                 </CardHeader>
                 <CardContent>
                   <Button variant="outline" className="w-full" asChild>
-                    <Link href="/support">
-                      Get Help Now
-                    </Link>
+                    <Link href="/support">Get Help Now</Link>
                   </Button>
                 </CardContent>
               </Card>
@@ -384,7 +421,10 @@ export default function CommunityPage() {
                 </CardHeader>
                 <CardContent>
                   <Button variant="outline" className="w-full" asChild>
-                    <Link href="https://github.com/axyl-os/axyl/blob/main/CONTRIBUTING.md" target="_blank">
+                    <Link
+                      href="https://github.com/axyl-os/axyl/blob/main/CONTRIBUTING.md"
+                      target="_blank"
+                    >
                       Start Contributing
                     </Link>
                   </Button>
@@ -399,22 +439,34 @@ export default function CommunityPage() {
               <CardHeader>
                 <CardTitle>Discord Channels</CardTitle>
                 <CardDescription>
-                  Explore our Discord server channels and find the right place for your discussions
+                  Explore our Discord server channels and find the right place
+                  for your discussions
                 </CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="space-y-4">
                   {discordChannels.map((channel) => (
-                    <div key={channel.id} className="flex items-center justify-between p-4 border rounded-lg">
+                    <div
+                      key={channel.id}
+                      className="flex items-center justify-between p-4 border rounded-lg"
+                    >
                       <div className="flex items-center gap-3">
-                        <div className={`w-3 h-3 rounded-full ${channel.isActive ? 'bg-green-500' : 'bg-gray-400'}`}></div>
+                        <div
+                          className={`w-3 h-3 rounded-full ${channel.isActive ? "bg-green-500" : "bg-gray-400"}`}
+                        ></div>
                         <div>
                           <div className="flex items-center gap-2">
                             <span className="font-medium">#{channel.name}</span>
-                            <Badge variant="outline" className="text-xs">{channel.category}</Badge>
+                            <Badge variant="outline" className="text-xs">
+                              {channel.category}
+                            </Badge>
                           </div>
-                          <p className="text-sm text-muted-foreground">{channel.topic}</p>
-                          <p className="text-xs text-muted-foreground">{channel.memberCount.toLocaleString()} members</p>
+                          <p className="text-sm text-muted-foreground">
+                            {channel.topic}
+                          </p>
+                          <p className="text-xs text-muted-foreground">
+                            {channel.memberCount.toLocaleString()} members
+                          </p>
                         </div>
                       </div>
                       <div className="flex items-center gap-2">
@@ -428,7 +480,7 @@ export default function CommunityPage() {
                     </div>
                   ))}
                 </div>
-                
+
                 <div className="mt-6 p-4 bg-muted rounded-lg">
                   <h4 className="font-semibold mb-2">Discord Features</h4>
                   <div className="grid md:grid-cols-2 gap-4 text-sm">
@@ -466,7 +518,10 @@ export default function CommunityPage() {
           <TabsContent value="events" className="space-y-6">
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {upcomingEvents.map((event) => (
-                <Card key={event.id} className="hover:shadow-lg transition-shadow">
+                <Card
+                  key={event.id}
+                  className="hover:shadow-lg transition-shadow"
+                >
                   <CardHeader>
                     <div className="flex items-center justify-between">
                       <Badge className={`${getEventColor(event.type)} text-xs`}>
@@ -494,7 +549,7 @@ export default function CommunityPage() {
                           {event.time}
                         </span>
                       </div>
-                      
+
                       <div className="flex items-center justify-between text-sm">
                         <span>{event.attendees} attending</span>
                         {event.maxAttendees && (
@@ -503,21 +558,21 @@ export default function CommunityPage() {
                           </span>
                         )}
                       </div>
-                      
+
                       {event.maxAttendees && (
                         <div className="w-full bg-muted rounded-full h-2">
-                          <div 
+                          <div
                             className="bg-primary h-2 rounded-full"
-                            style={{ 
-                              width: `${Math.min((event.attendees / event.maxAttendees) * 100, 100)}%` 
+                            style={{
+                              width: `${Math.min((event.attendees / event.maxAttendees) * 100, 100)}%`,
                             }}
                           />
                         </div>
                       )}
-                      
+
                       <Button className="w-full" size="sm">
                         <UserPlus className="h-4 w-4 mr-2" />
-                        {session ? 'Join Event' : 'Sign in to Join'}
+                        {isAuthenticated ? "Join Event" : "Sign in to Join"}
                       </Button>
                     </div>
                   </CardContent>
@@ -532,7 +587,8 @@ export default function CommunityPage() {
               <CardHeader>
                 <CardTitle>Community Guidelines</CardTitle>
                 <CardDescription>
-                  Our principles for maintaining a welcoming and productive community
+                  Our principles for maintaining a welcoming and productive
+                  community
                 </CardDescription>
               </CardHeader>
               <CardContent>
@@ -542,111 +598,147 @@ export default function CommunityPage() {
                       <Heart className="h-5 w-5 text-red-500" />
                       Core Values
                     </h3>
-                
+
                     <div className="grid md:grid-cols-2 gap-6">
                       <div className="space-y-3">
                         <div className="flex items-start gap-3">
                           <div className="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
-                            <span className="text-blue-600 text-sm font-bold">1</span>
+                            <span className="text-blue-600 text-sm font-bold">
+                              1
+                            </span>
                           </div>
                           <div>
-                            <h4 className="font-semibold">Respect & Inclusivity</h4>
+                            <h4 className="font-semibold">
+                              Respect & Inclusivity
+                            </h4>
                             <p className="text-sm text-muted-foreground">
-                              We welcome everyone regardless of background, experience level, or identity. 
-                              Treat all members with kindness and respect.
+                              We welcome everyone regardless of background,
+                              experience level, or identity. Treat all members
+                              with kindness and respect.
                             </p>
                           </div>
                         </div>
-                    
+
                         <div className="flex items-start gap-3">
                           <div className="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
-                            <span className="text-blue-600 text-sm font-bold">2</span>
+                            <span className="text-blue-600 text-sm font-bold">
+                              2
+                            </span>
                           </div>
                           <div>
-                            <h4 className="font-semibold">Constructive Communication</h4>
+                            <h4 className="font-semibold">
+                              Constructive Communication
+                            </h4>
                             <p className="text-sm text-muted-foreground">
-                              Provide helpful, constructive feedback. Focus on the issue, not the person. 
-                              Ask questions to understand before judging.
+                              Provide helpful, constructive feedback. Focus on
+                              the issue, not the person. Ask questions to
+                              understand before judging.
                             </p>
                           </div>
                         </div>
                       </div>
-                  
+
                       <div className="space-y-3">
                         <div className="flex items-start gap-3">
                           <div className="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
-                            <span className="text-blue-600 text-sm font-bold">3</span>
+                            <span className="text-blue-600 text-sm font-bold">
+                              3
+                            </span>
                           </div>
                           <div>
                             <h4 className="font-semibold">Knowledge Sharing</h4>
                             <p className="text-sm text-muted-foreground">
-                              Share your knowledge freely and help others learn. 
+                              Share your knowledge freely and help others learn.
                               Remember that everyone was a beginner once.
                             </p>
                           </div>
                         </div>
-                    
+
                         <div className="flex items-start gap-3">
                           <div className="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
-                            <span className="text-blue-600 text-sm font-bold">4</span>
+                            <span className="text-blue-600 text-sm font-bold">
+                              4
+                            </span>
                           </div>
                           <div>
-                            <h4 className="font-semibold">Quality & Excellence</h4>
+                            <h4 className="font-semibold">
+                              Quality & Excellence
+                            </h4>
                             <p className="text-sm text-muted-foreground">
-                              Strive for quality in contributions. Test your code, 
-                              proofread your writing, and think before posting.
+                              Strive for quality in contributions. Test your
+                              code, proofread your writing, and think before
+                              posting.
                             </p>
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
-              
+
                   <div className="space-y-4">
                     <h3 className="font-semibold text-lg flex items-center gap-2">
                       <Target className="h-5 w-5 text-green-500" />
                       Community Rules
                     </h3>
-                
+
                     <Alert>
                       <Shield className="h-4 w-4" />
                       <AlertDescription>
-                        These rules apply to all community spaces including Discord, GitHub, and forums.
+                        These rules apply to all community spaces including
+                        Discord, GitHub, and forums.
                       </AlertDescription>
                     </Alert>
-                
+
                     <div className="space-y-4">
                       <div className="p-4 border rounded-lg">
-                        <h4 className="font-semibold mb-2 text-green-700">✅ Encouraged Behavior</h4>
+                        <h4 className="font-semibold mb-2 text-green-700">
+                          ✅ Encouraged Behavior
+                        </h4>
                         <ul className="text-sm space-y-1 text-muted-foreground">
                           <li>• Ask questions and seek help when needed</li>
                           <li>• Share your knowledge and experience</li>
-                          <li>• Provide constructive feedback and suggestions</li>
+                          <li>
+                            • Provide constructive feedback and suggestions
+                          </li>
                           <li>• Report bugs and contribute to improvements</li>
                           <li>• Help newcomers feel welcome</li>
-                          <li>• Use appropriate channels for different topics</li>
+                          <li>
+                            • Use appropriate channels for different topics
+                          </li>
                         </ul>
                       </div>
-                  
+
                       <div className="p-4 border rounded-lg">
-                        <h4 className="font-semibold mb-2 text-red-700">❌ Prohibited Behavior</h4>
+                        <h4 className="font-semibold mb-2 text-red-700">
+                          ❌ Prohibited Behavior
+                        </h4>
                         <ul className="text-sm space-y-1 text-muted-foreground">
                           <li>• Harassment, discrimination, or hate speech</li>
-                          <li>• Spam, excessive self-promotion, or off-topic content</li>
+                          <li>
+                            • Spam, excessive self-promotion, or off-topic
+                            content
+                          </li>
                           <li>• Sharing pirated software or illegal content</li>
                           <li>• Personal attacks or inflammatory language</li>
-                          <li>• Doxxing or sharing personal information without consent</li>
-                          <li>• Impersonation of other users or team members</li>
+                          <li>
+                            • Doxxing or sharing personal information without
+                            consent
+                          </li>
+                          <li>
+                            • Impersonation of other users or team members
+                          </li>
                         </ul>
                       </div>
                     </div>
                   </div>
-              
+
                   <Alert>
                     <Heart className="h-4 w-4" />
                     <AlertDescription>
-                      <strong>Remember:</strong> These guidelines help us maintain a positive environment where everyone can learn, 
-                      contribute, and enjoy being part of the AxylOS community. Thank you for helping us create an amazing space!
+                      <strong>Remember:</strong> These guidelines help us
+                      maintain a positive environment where everyone can learn,
+                      contribute, and enjoy being part of the AxylOS community.
+                      Thank you for helping us create an amazing space!
                     </AlertDescription>
                   </Alert>
                 </div>
@@ -656,5 +748,5 @@ export default function CommunityPage() {
         </Tabs>
       </div>
     </div>
-  )
+  );
 }

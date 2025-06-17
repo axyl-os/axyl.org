@@ -9,14 +9,18 @@ import {
 } from "react";
 import { useRouter } from "next/navigation";
 import { supabase, signOut } from "@/lib/supabase";
+import type { User, Session, AuthChangeEvent } from "@supabase/supabase-js";
 
-// Create a context to provide authentication-related information
-export const AuthContext = createContext<{
+// Define the auth context type
+type AuthContextType = {
   isAuthenticated: boolean;
   isLoading: boolean;
-  user: Record<string, unknown> | null;
+  user: User | null;
   logout: () => Promise<void>;
-}>({
+};
+
+// Create a context to provide authentication-related information
+export const AuthContext = createContext<AuthContextType>({
   isAuthenticated: false,
   isLoading: true,
   user: null,
@@ -29,11 +33,11 @@ export const useAuth = () => useContext(AuthContext);
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const router = useRouter();
 
-  // Define authentication state with proper fallbacks
-  const [state, setState] = useState({
+  // Define authentication state with proper types
+  const [state, setState] = useState<Omit<AuthContextType, "logout">>({
     isAuthenticated: false,
     isLoading: true,
-    user: null as Record<string, unknown> | null,
+    user: null,
   });
 
   // Update state when session changes
@@ -58,9 +62,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
     fetchUser();
 
-    // Listen for auth state changes
+    // Listen for auth state changes with proper types
     const { data: authListener } = supabase.auth.onAuthStateChange(
-      (_event: string, session: { user: any } | null) => {
+      (event: AuthChangeEvent, session: Session | null) => {
         setState({
           isAuthenticated: !!session?.user,
           isLoading: false,
