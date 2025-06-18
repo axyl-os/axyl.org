@@ -9,6 +9,8 @@ export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
     autoRefreshToken: true,
     persistSession: true,
     detectSessionInUrl: true,
+    storageKey: "supabase-auth",
+    flowType: "pkce",
   },
 });
 
@@ -18,6 +20,7 @@ export async function signInWithDiscord() {
     provider: "discord",
     options: {
       redirectTo: `${window.location.origin}/api/auth/callback/discord`,
+      skipBrowserRedirect: false,
     },
   });
 
@@ -49,5 +52,20 @@ export async function getCurrentUser() {
     return null;
   }
 
+  if (!session?.access_token) {
+    console.warn("Session exists but no access token found");
+  }
+
   return session?.user || null;
+}
+
+export async function refreshSession() {
+  const { data, error } = await supabase.auth.refreshSession();
+
+  if (error) {
+    console.error("Error refreshing session:", error);
+    return null;
+  }
+
+  return data.session;
 }
