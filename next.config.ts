@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import path from "path";
 
 const nextConfig: NextConfig = {
   /* config options here */
@@ -7,8 +8,6 @@ const nextConfig: NextConfig = {
     serverActions: {
       allowedOrigins: ["localhost:3000", "localhost:3002", "axyl.org"],
     },
-    // Ensure transpilation of styled-jsx
-    transpilePackages: ["styled-jsx"],
   },
   images: {
     domains: ["cdn.discordapp.com"],
@@ -31,17 +30,22 @@ const nextConfig: NextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
-  // Force use of the React builds from the same location to avoid duplicates
+  // Configure webpack to use local styled-jsx implementation
   webpack: (config, { isServer }) => {
-    if (!isServer) {
+    // Alias styled-jsx imports to our local implementation
+    const localStyledJsxPath = path.join(__dirname, "src/lib/styled-jsx");
+
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      "styled-jsx": localStyledJsxPath,
+      "styled-jsx/style": path.join(localStyledJsxPath, "style.js"),
+      "styled-jsx/babel": path.join(localStyledJsxPath, "babel.js"),
+      "styled-jsx/macro": path.join(localStyledJsxPath, "macro.js"),
       // Have client-side code reference the same instance of React as server
-      config.resolve.alias = {
-        ...config.resolve.alias,
-        react: require.resolve("react"),
-        "react-dom": require.resolve("react-dom"),
-        "styled-jsx": require.resolve("styled-jsx"),
-      };
-    }
+      react: require.resolve("react"),
+      "react-dom": require.resolve("react-dom"),
+    };
+
     return config;
   },
 };
