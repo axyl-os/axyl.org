@@ -12,6 +12,7 @@ import {
   User,
   Download,
 } from "lucide-react";
+import { ThemeToggle } from "@/components/theme-toggle";
 import { AuthErrorBoundary } from "@/components/error-boundary";
 import { useEffect, useState } from "react";
 import { supabase, signInWithDiscord, signOut } from "@/lib/supabase";
@@ -99,6 +100,7 @@ function NavigationContent() {
         </div>
 
         <div className="flex items-center space-x-4">
+          <ThemeToggle />
           {loading ? (
             <div className="w-8 h-8 rounded-full bg-muted animate-pulse" />
           ) : user ? (
