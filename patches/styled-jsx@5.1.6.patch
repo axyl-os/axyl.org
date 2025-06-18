@@ -1,0 +1,48 @@
+diff --git a/node_modules/styled-jsx/package.json b/node_modules/styled-jsx/package.json
+index a32ac09..786c81f 100644
+--- a/node_modules/styled-jsx/package.json
++++ b/node_modules/styled-jsx/package.json
+@@ -1,6 +1,6 @@
+ {
+   "name": "styled-jsx",
+-  "version": "5.1.6",
++  "version": "5.1.7-patched",
+   "license": "MIT",
+   "repository": "vercel/styled-jsx",
+   "description": "Full CSS support for JSX without compromises",
+@@ -56,7 +56,7 @@
+   "peerDependencies": {
+     "react": ">= 16.8.0 || 17.x.x || 18.x.x",
+     "babel-plugin-macros": ">=3.0.0"
+   },
+   "peerDependenciesMeta": {
+     "babel-plugin-macros": {
+       "optional": true
+@@ -120,4 +120,12 @@
+     "client-only": "^0.0.1"
+   },
+   "engines": {
+     "node": ">= 12.0.0"
++  },
++  "overrides": {
++    "react": ">=16.8.0 || ^19.0.0"
++  },
++  "resolutions": {
++    "react": ">=16.8.0 || ^19.0.0"
+   }
+ }
++
+diff --git a/node_modules/styled-jsx/index.js b/node_modules/styled-jsx/index.js
+index 86097c3..e9f1cec 100644
+--- a/node_modules/styled-jsx/index.js
++++ b/node_modules/styled-jsx/index.js
+@@ -0,0 +1,9 @@
++'use strict';
++Object.defineProperty(exports, '__esModule', { value: true });
++
++// Proxy to actual implementation in dist/
++const styledJsx = require('./dist/index/index.js');
++
++// Export all properties from the original module
++Object.keys(styledJsx).forEach(key => exports[key] = styledJsx[key]);
++

@@ -1,0 +1,15 @@
+{
+  "framework": "nextjs",
+  "buildCommand": "npm run postinstall && next build",
+  "devCommand": "next dev",
+  "installCommand": "npm install --no-save",
+  "outputDirectory": ".next",
+  "nodeVersion": "18.x",
+  "git": {
+    "deploymentEnabled": {
+      "main": true,
+      "production": true,
+      "preview": true
+    }
+  }
+}
