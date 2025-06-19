@@ -31,7 +31,7 @@ const nextConfig: NextConfig = {
     ignoreDuringBuilds: true,
   },
   // Configure webpack to use local styled-jsx implementation
-  webpack: (config, { isServer }) => {
+  webpack: (config: any, { isServer }: { isServer: boolean }) => {
     // Alias styled-jsx imports to our local implementation
     const localStyledJsxPath = path.join(__dirname, "src/lib/styled-jsx");
 
