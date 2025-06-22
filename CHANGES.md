@@ -1,16 +1,3 @@
-# Authentication System Changes
-
-## Overview
-
-This document summarizes the changes made to the authentication system, migrating from the `better-auth` library to Supabase authentication. This migration resolves issues with the Discord login button and improves the overall authentication setup.
-
-## Key Changes
-
-### 1. Authentication Provider
-
-- Replaced `better-auth` with Supabase Authentication
-- Implemented real-time session state management using Supabase's auth state listeners
-- Fixed user profile data handling and display
 
 ### 2. Discord OAuth Integration
 

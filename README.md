@@ -5,7 +5,6 @@ A beautiful, modern website for AxylOS - an Arch-based Linux distribution design
 ## Features
 
 - **Modern Design**: Clean, responsive UI built with Next.js and Tailwind CSS
-- **Discord Authentication**: Secure login using Discord OAuth via Supabase Auth
 - **Documentation**: Comprehensive docs section for users
 - **Blog**: News and updates from the AxylOS team
 - **Community Focus**: Built to connect and support the AxylOS community
@@ -13,10 +12,9 @@ A beautiful, modern website for AxylOS - an Arch-based Linux distribution design
 ## Tech Stack
 
 - **Framework**: Next.js 15.3 with App Router
-- **Authentication**: Supabase Auth with Discord provider
 - **Styling**: Tailwind CSS with custom design system
 - **UI Components**: Radix UI primitives with custom styling
-- **Database**: PostgreSQL with Supabase
+- **Database**: PostgreSQL
 - **Icons**: Lucide React
 - **Animations**: Framer Motion
 
@@ -26,7 +24,6 @@ A beautiful, modern website for AxylOS - an Arch-based Linux distribution design
 
 - Node.js 18+ 
 - pnpm (recommended) or npm
-- Discord Application (for OAuth)
 
 ### Installation
 
@@ -41,27 +38,12 @@ cd axyl.org
 pnpm install
 ```
 
-3. Set up environment variables:
+3. Set up environment variables if needed:
 ```bash
 cp .env.example .env
 ```
 
-Edit `.env` and add your Discord OAuth credentials:
-```env
-BETTER_AUTH_SECRET=your-secret-key-here
-BETTER_AUTH_URL=http://localhost:3000
-NEXT_PUBLIC_BETTER_AUTH_URL=http://localhost:3000
-DISCORD_CLIENT_ID=your-discord-client-id
-DISCORD_CLIENT_SECRET=your-discord-client-secret
-```
-
-### Discord OAuth Setup
-
-1. Go to [Discord Developer Portal](https://discord.com/developers/applications)
-2. Create a new application
-3. Go to OAuth2 settings
-4. Add redirect URI: `http://localhost:3000/api/auth/callback/discord`
-5. Copy Client ID and Client Secret to your `.env` file
+Edit `.env` with your environment settings.
 
 ### Running the Development Server
 
@@ -84,35 +66,19 @@ pnpm start
 axyl.org/
 ├── src/
 │   ├── app/                  # Next.js app router pages
-│   │   ├── api/auth/        # Authentication API routes
 │   │   ├── blog/            # Blog pages
 │   │   ├── docs/            # Documentation pages
-│   │   ├── login/           # Login page
 │   │   ├── layout.tsx       # Root layout
 │   │   └── page.tsx         # Homepage
 │   ├── components/          # Reusable UI components
 │   │   ├── ui/             # Base UI components (Radix)
-│   │   ├── navigation.tsx   # Main navigation
-│   │   └── login-form.tsx   # Login form
+│   │   └── navigation.tsx   # Main navigation
 │   └── lib/                # Utility functions and configurations
-│       ├── auth.ts         # Supabase auth configuration
-│       ├── auth-client.ts  # Client-side auth helpers
 │       └── utils.ts        # General utilities
 ├── public/                 # Static assets
 └── ...config files
 ```
 
-## Authentication Flow
-
-The website uses Supabase Auth with Discord OAuth:
-
-
-1. User clicks "Sign In with Discord"
-2. Redirects to Discord OAuth
-3. Discord redirects back with authorization code
-4. Supabase Auth exchanges code for user info
-5. User session is created and stored
-6. User can access authenticated features
 
 ## Development
 
@@ -130,11 +96,7 @@ UI components are built using Radix UI primitives and are located in `src/compon
 
 ### Environment Variables
 
-- `BETTER_AUTH_SECRET`: Secret key for authentication
-- `BETTER_AUTH_URL`: Base URL of your application
-- `NEXT_PUBLIC_BETTER_AUTH_URL`: Public-facing auth URL
-- `DISCORD_CLIENT_ID`: Discord OAuth client ID
-- `DISCORD_CLIENT_SECRET`: Discord OAuth client secret
+- Configure appropriate environment variables based on your deployment needs.
 
 ## Deployment
 
@@ -142,8 +104,7 @@ UI components are built using Radix UI primitives and are located in `src/compon
 
 1. Connect your repository to Vercel
 2. Add environment variables in Vercel dashboard
-3. Update Discord OAuth redirect URI to your domain
-4. Deploy
+3. Deploy
 
 ### Other Platforms
 
@@ -163,7 +124,7 @@ The application is a standard Next.js app and can be deployed to any platform th
 
 ## Support
 
-For support, please join our Discord community or open an issue on GitHub.
+For support, please open an issue on GitHub.
 
 ---
 
