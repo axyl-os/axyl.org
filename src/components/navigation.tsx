@@ -2,68 +2,21 @@
 
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   Terminal,
   FileText,
   BookOpen,
-  LogIn,
-  LogOut,
-  User,
   Download,
 } from "lucide-react";
 import { ThemeToggle } from "@/components/theme-toggle";
-import { AuthErrorBoundary } from "@/components/error-boundary";
-import { useEffect, useState } from "react";
-import { supabase, signInWithDiscord, signOut } from "@/lib/supabase";
+import { useState } from "react";
 
 function NavigationContent() {
-  const [user, setUser] = useState<any>(null);
-  const [loading, setLoading] = useState(true);
-
-  // Initialize user state from session
-  useEffect(() => {
-    const fetchUser = async () => {
-      const {
-        data: { session },
-      } = await supabase.auth.getSession();
-      setUser(session?.user || null);
-      setLoading(false);
-
-      // Listen for auth changes
-      const { data: authListener } = supabase.auth.onAuthStateChange(
-        (event: string, session: { user: any } | null) => {
-          setUser(session?.user || null);
-        },
-      );
-
-      return () => {
-        authListener.subscription.unsubscribe();
-      };
-    };
-
-    fetchUser();
-  }, []);
-
-  const handleSignIn = async () => {
-    try {
-      await signInWithDiscord();
-    } catch (error) {
-      console.error("Sign in error:", error);
-    }
-  };
-
-  const handleSignOut = async () => {
-    try {
-      await signOut();
-      window.location.href = "/";
-    } catch (error) {
-      console.error("Sign out error:", error);
-    }
-  };
+  // Simplified navigation without auth
+  const [loading, setLoading] = useState(false);
 
   return (
-    <nav className="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-md border-b border-border">
+    <nav className="fixed top-[36px] w-full z-40 bg-background/80 backdrop-blur-md border-b border-border">
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
         <div className="flex items-center space-x-8">
           <Link
@@ -99,37 +52,8 @@ function NavigationContent() {
           </div>
         </div>
 
-        <div className="flex items-center space-x-4">
+        <div className="flex items-center">
           <ThemeToggle />
-          {loading ? (
-            <div className="w-8 h-8 rounded-full bg-muted animate-pulse" />
-          ) : user ? (
-            <div className="flex items-center space-x-3">
-              <div className="hidden sm:flex items-center space-x-2">
-                <Avatar className="h-8 w-8">
-                  <AvatarImage
-                    src={user.user_metadata?.avatar_url || ""}
-                    alt={user.user_metadata?.full_name || ""}
-                  />
-                  <AvatarFallback>
-                    <User className="h-4 w-4" />
-                  </AvatarFallback>
-                </Avatar>
-                <span className="text-sm font-medium">
-                  {user.user_metadata?.full_name || user.email}
-                </span>
-              </div>
-              <Button variant="ghost" size="sm" onClick={handleSignOut}>
-                <LogOut className="h-4 w-4 mr-2" />
-                Sign Out
-              </Button>
-            </div>
-          ) : (
-            <Button onClick={handleSignIn} size="sm">
-              <LogIn className="h-4 w-4 mr-2" />
-              Sign In with Discord
-            </Button>
-          )}
         </div>
       </div>
     </nav>
@@ -137,9 +61,5 @@ function NavigationContent() {
 }
 
 export function Navigation() {
-  return (
-    <AuthErrorBoundary>
-      <NavigationContent />
-    </AuthErrorBoundary>
-  );
+  return <NavigationContent />;
 }

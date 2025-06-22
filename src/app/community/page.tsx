@@ -13,8 +13,6 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Alert, AlertDescription } from "@/components/ui/alert";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { useAuth } from "@/components/auth-provider";
 import {
   Users,
   MessageCircle,
@@ -172,7 +170,6 @@ const upcomingEvents: CommunityEvent[] = [
 ];
 
 export default function CommunityPage() {
-  const { isAuthenticated, user } = useAuth();
   const [activeTab, setActiveTab] = useState("overview");
 
   const getEventIcon = (type: CommunityEvent["type"]) => {
@@ -308,16 +305,6 @@ export default function CommunityPage() {
                       <div className="text-sm text-muted-foreground">
                         members online
                       </div>
-                    </div>
-                    <div className="flex -space-x-2">
-                      {[1, 2, 3, 4].map((i) => (
-                        <Avatar
-                          key={i}
-                          className="w-8 h-8 border-2 border-background"
-                        >
-                          <AvatarFallback>U{i}</AvatarFallback>
-                        </Avatar>
-                      ))}
                     </div>
                   </div>
                   <Button className="w-full" asChild>
@@ -572,7 +559,6 @@ export default function CommunityPage() {
 
                       <Button className="w-full" size="sm">
                         <UserPlus className="h-4 w-4 mr-2" />
-                        {isAuthenticated ? "Join Event" : "Sign in to Join"}
                       </Button>
                     </div>
                   </CardContent>
