@@ -34,7 +34,6 @@ cp .env.example .env.local
 Edit `.env.local` and fill in the following variables:
 
 ```
-NEXT_PUBLIC_SUPABASE_URL=https://your-supabase-project.supabase.co
 NEXT_PUBLIC_SUPABASE_ANON_KEY=your-supabase-anon-key
 ```
 
