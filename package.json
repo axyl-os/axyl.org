@@ -16,7 +16,7 @@
     "@radix-ui/react-navigation-menu": "^1.2.13",
     "@radix-ui/react-slot": "^1.2.3",
     "@radix-ui/react-tabs": "^1.1.12",
-    "@sentry/react": "^9.30.0",
+    "@sentry/react": "^9.31.0",
     "@supabase/auth-helpers-nextjs": "^0.9.0",
     "@supabase/supabase-js": "^2.39.7",
     "@types/better-sqlite3": "^7.6.13",
