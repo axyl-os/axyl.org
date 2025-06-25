@@ -18,7 +18,7 @@
     "@radix-ui/react-tabs": "^1.1.12",
     "@sentry/react": "^9.30.0",
     "@supabase/auth-helpers-nextjs": "^0.9.0",
-    "@supabase/supabase-js": "^2.39.7",
+    "@supabase/supabase-js": "^2.50.2",
     "@types/better-sqlite3": "^7.6.13",
     "@vercel/analytics": "^1.5.0",
     "@vercel/speed-insights": "^1.2.0",
