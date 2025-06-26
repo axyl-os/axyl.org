@@ -16,7 +16,7 @@
     "@radix-ui/react-navigation-menu": "^1.2.13",
     "@radix-ui/react-slot": "^1.2.3",
     "@radix-ui/react-tabs": "^1.1.12",
-    "@sentry/react": "^9.30.0",
+    "@sentry/react": "^9.32.0",
     "@supabase/auth-helpers-nextjs": "^0.9.0",
     "@supabase/supabase-js": "^2.50.2",
     "@types/better-sqlite3": "^7.6.13",
@@ -33,7 +33,7 @@
     "react-day-picker": "^9.7.0",
     "react-dom": "^19.0.0",
     "tailwind-merge": "^3.3.1",
-    "wrangler": "^4.20.5"
+    "wrangler": "^4.22.0"
   },
   "resolutions": {},
   "overrides": {},
