@@ -2,18 +2,15 @@
 
 import { AlertTriangle, ExternalLink } from "lucide-react";
 import Link from "next/link";
-import { useState } from "react";
 
-export function SiteBanner() {
-  const [isClosed, setIsClosed] = useState(false);
-
+export function SiteBanner({ isClosed, onCloseAction }: { isClosed: boolean, onCloseAction: () => void }) {
   if (isClosed) {
     return null;
   }
 
   return (
-    <div className="w-full bg-amber-500 dark:bg-amber-600 text-black dark:text-white py-2 px-4">
-      <div className="container mx-auto flex items-center justify-between">
+    <div className="fixed top-0 left-0 w-full z-50 bg-amber-500 dark:bg-amber-600 text-black dark:text-white py-2 px-4 h-[40px]">
+      <div className="container mx-auto flex items-center justify-between h-full">
         <div className="flex items-center space-x-2">
           <AlertTriangle className="h-4 w-4" />
           <p className="text-sm font-medium">
@@ -29,7 +26,7 @@ export function SiteBanner() {
           </p>
         </div>
         <button 
-          onClick={() => setIsClosed(true)}
+          onClick={onCloseAction}
           className="text-sm font-medium hover:underline"
           aria-label="Close banner"
         >

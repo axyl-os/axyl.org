@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@mdx-js/loader": "^3.1.0",
+    "@next/mdx": "^15.3.5",
     "@radix-ui/react-accordion": "^1.2.11",
     "@radix-ui/react-alert-dialog": "^1.1.14",
     "@radix-ui/react-avatar": "^1.1.10",
@@ -26,9 +28,11 @@
     "clsx": "^2.1.1",
     "date-fns": "^4.1.0",
     "fs-extra": "^11.2.0",
+    "gray-matter": "^4.0.3",
     "lucide-react": "^0.523.0",
     "motion": "^12.19.1",
     "next": "15.3.4",
+    "next-mdx-remote": "^5.0.0",
     "react": "^19.0.0",
     "react-day-picker": "^9.7.0",
     "react-dom": "^19.0.0",
