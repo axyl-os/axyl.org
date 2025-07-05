@@ -1,0 +1,65 @@
+# OrioleDB Setup Guide
+
+Learn how to integrate OrioleDB with your Supabase and PostgreSQL setup.
+
+## What is OrioleDB?
+
+[OrioleDB](https://orioledb.com/) is an open source PostgreSQL extension that provides a new table access method with a modern storage engine. It offers several advantages over traditional PostgreSQL storage:
+
+- Better write amplification and compression
+- Enhanced performance for OLTP workloads
+- Reduced storage space requirements
+- Faster index operations
+- Improved performance for high-concurrency workloads
+
+## Prerequisites
+
+1. A [Supabase](https://supabase.com/) account with an active project
+2. PostgreSQL 14 or higher (Supabase uses PostgreSQL 15 by default)
+3. Administrative access to your Supabase project
+
+## Setup Steps
+
+### Step 1: Enable OrioleDB Extension
+
+First, you need to enable the OrioleDB extension on your Supabase project. Log in to your Supabase dashboard, navigate to your project, go to the SQL Editor, and run:
+
+```sql
+CREATE EXTENSION IF NOT EXISTS orioledb;
+```
+
+To verify that the extension is properly installed, you can run:
+
+```sql
+SELECT * FROM pg_extension WHERE extname = 'orioledb';
+```
+
+### Step 2: Create OrioleDB Tables
+
+When creating tables that use OrioleDB, specify the `orioledb` access method:
+
+```sql
+CREATE TABLE my_table (
+  id serial PRIMARY KEY,
+  data text
+) USING orioledb;
+```
+
+### Step 3: Migrate Existing Tables (Optional)
+
+To migrate an existing table to OrioleDB, you can use:
+
+```sql
+ALTER TABLE existing_table SET (access_method = 'orioledb');
+```
+
+**Note:** Always back up your data before performing migrations.
+
+## Resources
+
+- [OrioleDB Documentation](https://orioledb.com/docs/)
+- [Supabase Docs](https://supabase.com/docs)
+- [PostgreSQL Docs](https://www.postgresql.org/docs/)
+
+---
+If you have questions or run into issues, reach out to the AxylOS community or check the official OrioleDB and Supabase documentation.

@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
 import {
   Terminal,
   FileText,
@@ -9,14 +8,16 @@ import {
   Download,
 } from "lucide-react";
 import { ThemeToggle } from "@/components/theme-toggle";
-import { useState } from "react";
 
-function NavigationContent() {
-  // Simplified navigation without auth
-  const [loading, setLoading] = useState(false);
+function NavigationContent({ bannerClosed }: { bannerClosed: boolean }) {
+  // nav height: 64px, banner height: 40px
+  const navTop = bannerClosed ? 0 : 40;
 
   return (
-    <nav className="fixed top-[36px] w-full z-40 bg-background/80 backdrop-blur-md border-b border-border">
+    <nav
+      className="fixed w-full z-40 bg-background/80 backdrop-blur-md border-b border-border"
+      style={{ top: navTop, height: 64 }}
+    >
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
         <div className="flex items-center space-x-8">
           <Link
@@ -60,6 +61,6 @@ function NavigationContent() {
   );
 }
 
-export function Navigation() {
-  return <NavigationContent />;
+export function Navigation({ bannerClosed }: { bannerClosed: boolean }) {
+  return <NavigationContent bannerClosed={bannerClosed} />;
 }

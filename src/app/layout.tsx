@@ -1,11 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { Navigation } from "@/components/navigation";
-import { SpeedInsights } from "@vercel/speed-insights/next";
-import { Analytics } from "@vercel/analytics/next";
-import { ThemeProvider } from "@/components/theme-provider";
-import { SiteBanner } from "@/components/site-banner";
+import ClientLayoutShell from "./layout_shell";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -33,15 +29,9 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <ThemeProvider defaultTheme="dark" enableSystem={false}>
-            <SiteBanner />
-            <Navigation />
-            <main className="pt-[100px]">
-              {children}
-              <SpeedInsights />
-              <Analytics />
-            </main>
-        </ThemeProvider>
+        <ClientLayoutShell>
+          {children}
+        </ClientLayoutShell>
       </body>
     </html>
   );
