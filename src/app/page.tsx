@@ -47,7 +47,7 @@ export default function HomePage() {
             <Button size="lg" className="text-base px-8" asChild>
               <Link href="/download">
                 <Download className="h-5 w-5 mr-2" />
-                Download AxylOS
+                Download AxylOS (soon!)
               </Link>
             </Button>
             <Button variant="outline" size="lg" asChild>
@@ -68,8 +68,9 @@ export default function HomePage() {
               Why Choose AxylOS?
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Built on the solid foundation of Arch Linux with carefully curated
-              features that make Linux accessible to everyone.
+              Built on the Principles and Philosophy of Linux with carefully
+              curated features that make Open Operating Systems accessible to
+              everyone.
             </p>
           </div>
 
@@ -107,8 +108,9 @@ export default function HomePage() {
                 </div>
                 <CardTitle>Secure & Stable</CardTitle>
                 <CardDescription>
-                  Built on Arch Linux&apos;s rolling release model with
-                  additional stability and security measures.
+                  Built on a rolling release model with additional stability and
+                  security measures. Ensuring that you always have the latest
+                  security and updates
                 </CardDescription>
               </CardHeader>
             </Card>
@@ -147,7 +149,7 @@ export default function HomePage() {
                 <CardTitle>Easy Installation</CardTitle>
                 <CardDescription>
                   Streamlined installation process that gets you up and running
-                  in minutes.
+                  in minutes, rather than hours days, or weeks.
                 </CardDescription>
               </CardHeader>
             </Card>
