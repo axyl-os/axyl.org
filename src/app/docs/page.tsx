@@ -1,17 +1,23 @@
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { 
-  BookOpen, 
-  Terminal, 
-  Download, 
-  Settings, 
-  Users, 
+"use client";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import {
+  BookOpen,
+  Terminal,
+  Download,
+  Settings,
+  Users,
   Wrench,
   ArrowRight,
-  ExternalLink
-} from "lucide-react"
+  ExternalLink,
+} from "lucide-react";
 
 export default function DocsPage() {
   return (
@@ -23,14 +29,14 @@ export default function DocsPage() {
             <BookOpen className="h-3 w-3 mr-1" />
             Documentation
           </Badge>
-          
+
           <h1 className="text-4xl md:text-5xl font-bold mb-4">
             AxylOS Documentation
           </h1>
-          
+
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Everything you need to know about installing, configuring, and using AxylOS.
-            From beginner guides to advanced customization.
+            Everything you need to know about installing, configuring, and using
+            AxylOS. From beginner guides to advanced customization.
           </p>
         </div>
 
@@ -82,7 +88,7 @@ export default function DocsPage() {
           <div className="grid lg:grid-cols-2 gap-8">
             <div className="space-y-4">
               <h3 className="text-xl font-semibold mb-4">User Guides</h3>
-              
+
               <Card className="hover:shadow-md transition-shadow">
                 <CardHeader className="pb-3">
                   <CardTitle className="text-base flex items-center justify-between">
@@ -134,7 +140,7 @@ export default function DocsPage() {
 
             <div className="space-y-4">
               <h3 className="text-xl font-semibold mb-4">Advanced Topics</h3>
-              
+
               <Card className="hover:shadow-md transition-shadow">
                 <CardHeader className="pb-3">
                   <CardTitle className="text-base flex items-center justify-between">
@@ -197,7 +203,8 @@ export default function DocsPage() {
                 </div>
                 <CardTitle className="text-lg">Community Forum</CardTitle>
                 <CardDescription>
-                  Join discussions, ask questions, and share your experiences with other AxylOS users.
+                  Join discussions, ask questions, and share your experiences
+                  with other AxylOS users.
                 </CardDescription>
                 <Button variant="outline" size="sm" className="mt-4 w-fit">
                   Visit Forum
@@ -213,7 +220,8 @@ export default function DocsPage() {
                 </div>
                 <CardTitle className="text-lg">Bug Reports</CardTitle>
                 <CardDescription>
-                  Found a bug? Report it on our GitHub repository to help improve AxylOS.
+                  Found a bug? Report it on our GitHub repository to help
+                  improve AxylOS.
                 </CardDescription>
                 <Button variant="outline" size="sm" className="mt-4 w-fit">
                   Report Bug
@@ -229,7 +237,8 @@ export default function DocsPage() {
                 </div>
                 <CardTitle className="text-lg">Wiki</CardTitle>
                 <CardDescription>
-                  Community-maintained wiki with additional guides, tips, and tricks.
+                  Community-maintained wiki with additional guides, tips, and
+                  tricks.
                 </CardDescription>
                 <Button variant="outline" size="sm" className="mt-4 w-fit">
                   Browse Wiki
@@ -244,23 +253,19 @@ export default function DocsPage() {
         <section className="text-center py-12 bg-muted/30 rounded-lg">
           <h2 className="text-2xl font-bold mb-4">Documentation Coming Soon</h2>
           <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-            We&apos;re working hard to create comprehensive documentation for AxylOS. 
-            In the meantime, join our community for support and updates.
+            We&apos;re working hard to create comprehensive documentation for
+            AxylOS. In the meantime, join our community for support and updates.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button variant="outline" asChild>
-              <Link href="/">
-                Back to Home
-              </Link>
+              <Link href="/">Back to Home</Link>
             </Button>
             <Button asChild>
-              <Link href="/blog">
-                Read Our Blog
-              </Link>
+              <Link href="/blog">Read Our Blog</Link>
             </Button>
           </div>
         </section>
       </div>
     </div>
-  )
+  );
 }

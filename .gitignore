@@ -6,6 +6,11 @@ node_modules/
 
 # Database files
 *.db
+*.sql
 *.sqlite
 *.sqlite3
 database.db
+
+.vercel/
+.idea/
+pnpm-lock.yaml

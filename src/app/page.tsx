@@ -1,20 +1,26 @@
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { 
-  Terminal, 
-  Download, 
-  Zap, 
-  Shield, 
-  Palette, 
+"use client";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import {
+  Terminal,
+  Download,
+  Zap,
+  Shield,
+  Palette,
   Users,
   ArrowRight,
   Github,
   ExternalLink,
   FileText,
-  BookOpen
-} from "lucide-react"
+  BookOpen,
+} from "lucide-react";
 
 export default function HomePage() {
   return (
@@ -24,18 +30,19 @@ export default function HomePage() {
         <div className="container mx-auto text-center max-w-4xl">
           <Badge variant="secondary" className="mb-6">
             <Zap className="h-3 w-3 mr-1" />
-            Arch-based Linux Distribution
+            The True New Operating System
           </Badge>
-          
+
           <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-foreground to-muted-foreground bg-clip-text text-transparent">
             Welcome to AxylOS
           </h1>
-          
+
           <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed">
-            A beautiful, user-friendly Arch-based Linux distribution designed for desktop users 
-            who want the power of Arch with the simplicity of a polished desktop experience.
+            A beautiful, user-friendly and Complete Operating System that does
+            everything that want, everything that you need, and those things
+            that you know you need but dont usually think about.
           </p>
-          
+
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Button size="lg" className="text-base px-8" asChild>
               <Link href="/download">
@@ -61,11 +68,11 @@ export default function HomePage() {
               Why Choose AxylOS?
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Built on the solid foundation of Arch Linux with carefully curated features 
-              that make Linux accessible to everyone.
+              Built on the solid foundation of Arch Linux with carefully curated
+              features that make Linux accessible to everyone.
             </p>
           </div>
-          
+
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             <Card className="hover:shadow-lg transition-shadow">
               <CardHeader>
@@ -74,11 +81,12 @@ export default function HomePage() {
                 </div>
                 <CardTitle>Lightning Fast</CardTitle>
                 <CardDescription>
-                  Optimized for performance with minimal resource usage and blazing-fast boot times.
+                  Optimized for performance with minimal resource usage and
+                  blazing-fast boot times.
                 </CardDescription>
               </CardHeader>
             </Card>
-            
+
             <Card className="hover:shadow-lg transition-shadow">
               <CardHeader>
                 <div className="h-12 w-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
@@ -86,11 +94,12 @@ export default function HomePage() {
                 </div>
                 <CardTitle>Beautiful Design</CardTitle>
                 <CardDescription>
-                  Carefully crafted user interface with modern aesthetics and intuitive workflows.
+                  Carefully crafted user interface with modern aesthetics and
+                  intuitive workflows.
                 </CardDescription>
               </CardHeader>
             </Card>
-            
+
             <Card className="hover:shadow-lg transition-shadow">
               <CardHeader>
                 <div className="h-12 w-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
@@ -98,11 +107,12 @@ export default function HomePage() {
                 </div>
                 <CardTitle>Secure & Stable</CardTitle>
                 <CardDescription>
-                  Built on Arch Linux&apos;s rolling release model with additional stability and security measures.
+                  Built on Arch Linux&apos;s rolling release model with
+                  additional stability and security measures.
                 </CardDescription>
               </CardHeader>
             </Card>
-            
+
             <Card className="hover:shadow-lg transition-shadow">
               <CardHeader>
                 <div className="h-12 w-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
@@ -110,11 +120,12 @@ export default function HomePage() {
                 </div>
                 <CardTitle>Developer Friendly</CardTitle>
                 <CardDescription>
-                  Pre-configured development tools and environments to get you coding faster.
+                  Pre-configured development tools and environments to get you
+                  coding faster.
                 </CardDescription>
               </CardHeader>
             </Card>
-            
+
             <Card className="hover:shadow-lg transition-shadow">
               <CardHeader>
                 <div className="h-12 w-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
@@ -122,11 +133,12 @@ export default function HomePage() {
                 </div>
                 <CardTitle>Community Driven</CardTitle>
                 <CardDescription>
-                  Active community support with regular updates and contributions from users worldwide.
+                  Active community support with regular updates and
+                  contributions from users worldwide.
                 </CardDescription>
               </CardHeader>
             </Card>
-            
+
             <Card className="hover:shadow-lg transition-shadow">
               <CardHeader>
                 <div className="h-12 w-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
@@ -134,7 +146,8 @@ export default function HomePage() {
                 </div>
                 <CardTitle>Easy Installation</CardTitle>
                 <CardDescription>
-                  Streamlined installation process that gets you up and running in minutes.
+                  Streamlined installation process that gets you up and running
+                  in minutes.
                 </CardDescription>
               </CardHeader>
             </Card>
@@ -149,9 +162,10 @@ export default function HomePage() {
             Ready to Experience AxylOS?
           </h2>
           <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-            Join thousands of users who have made the switch to a better Linux experience.
+            Join thousands of users who have made the switch to a better Linux
+            experience.
           </p>
-          
+
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Button size="lg" className="text-base px-8" asChild>
               <Link href="/download">
@@ -185,12 +199,13 @@ export default function HomePage() {
                     <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
                   </CardTitle>
                   <CardDescription>
-                    Comprehensive guides, tutorials, and API documentation to help you get the most out of AxylOS.
+                    Comprehensive guides, tutorials, and API documentation to
+                    help you get the most out of AxylOS.
                   </CardDescription>
                 </CardHeader>
               </Card>
             </Link>
-            
+
             <Link href="/blog">
               <Card className="group hover:shadow-lg transition-all duration-300 cursor-pointer">
                 <CardHeader>
@@ -202,7 +217,8 @@ export default function HomePage() {
                     <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
                   </CardTitle>
                   <CardDescription>
-                    Latest news, updates, tutorials, and insights from the AxylOS development team and community.
+                    Latest news, updates, tutorials, and insights from the
+                    AxylOS development team and community.
                   </CardDescription>
                 </CardHeader>
               </Card>
@@ -211,5 +227,5 @@ export default function HomePage() {
         </div>
       </section>
     </div>
-  )
+  );
 }
