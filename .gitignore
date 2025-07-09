@@ -14,3 +14,10 @@ database.db
 .vercel/
 .idea/
 pnpm-lock.yaml
+
+.devbox/
+
+*.lock
+
+.pnpm/
+.pnpm-store/

@@ -2,6 +2,8 @@
 
 A beautiful, modern website for AxylOS - an Arch-based Linux distribution designed for desktop users who want power and simplicity.
 
+## if you want to get up and running with the project as quickly as possible then you can use one of the included reproducible development environments that we have included. Be that Devbox, devcontainers, or the nix flake.
+
 ## Features
 
 - **Modern Design**: Clean, responsive UI built with Next.js and Tailwind CSS
@@ -22,7 +24,7 @@ A beautiful, modern website for AxylOS - an Arch-based Linux distribution design
 
 ### Prerequisites
 
-- Node.js 18+ 
+- Node.js 18+
 - pnpm (recommended) or npm
 
 ### Installation
