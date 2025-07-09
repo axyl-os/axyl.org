@@ -4,7 +4,11 @@
     "zsh@latest",
     "git@latest",
     "nodejs@latest",
-    "pnpm@latest"
+    "pnpm@latest",
+    "zoxide@latest",
+    "vim@latest",
+    "emacs@latest",
+    "neovim@latest"
   ],
   "shell": {
     "init_hook": [
