@@ -1,12 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import {
-  Terminal,
-  FileText,
-  BookOpen,
-  Download,
-} from "lucide-react";
+import { Terminal, FileText, BookOpen, Download } from "lucide-react";
 import { ThemeToggle } from "@/components/theme-toggle";
 
 function NavigationContent({ bannerClosed }: { bannerClosed: boolean }) {
@@ -37,14 +32,14 @@ function NavigationContent({ bannerClosed }: { bannerClosed: boolean }) {
               <span>Download</span>
             </Link>
             <Link
-              href="/docs"
+              href="https://docs.axyl.org"
               className="flex items-center space-x-1 text-muted-foreground hover:text-foreground transition-colors"
             >
               <FileText className="h-4 w-4" />
               <span>Docs</span>
             </Link>
             <Link
-              href="/blog"
+              href="https://blog.axyl.org"
               className="flex items-center space-x-1 text-muted-foreground hover:text-foreground transition-colors"
             >
               <BookOpen className="h-4 w-4" />

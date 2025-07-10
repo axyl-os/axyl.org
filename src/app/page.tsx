@@ -51,7 +51,7 @@ export default function HomePage() {
               </Link>
             </Button>
             <Button variant="outline" size="lg" asChild>
-              <Link href="/docs">
+              <Link href="https://docs.axyl.org">
                 <Terminal className="h-5 w-5 mr-2" />
                 Get Started
               </Link>
@@ -190,7 +190,7 @@ export default function HomePage() {
       <section className="py-16 px-4">
         <div className="container mx-auto">
           <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            <Link href="/docs">
+            <Link href="https://docs.axyl.org">
               <Card className="group hover:shadow-lg transition-all duration-300 cursor-pointer">
                 <CardHeader>
                   <CardTitle className="flex items-center justify-between">
@@ -208,7 +208,7 @@ export default function HomePage() {
               </Card>
             </Link>
 
-            <Link href="/blog">
+            <Link href="https://blog.axyl.org">
               <Card className="group hover:shadow-lg transition-all duration-300 cursor-pointer">
                 <CardHeader>
                   <CardTitle className="flex items-center justify-between">
