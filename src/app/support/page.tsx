@@ -148,7 +148,7 @@ const supportChannels: SupportChannel[] = [
     description:
       "Join our active Discord server for real-time help and community discussions.",
     icon: <MessageCircle className="h-5 w-5" />,
-    url: "https://awfixer.link/discord",
+    url: "https://inv.wtf/deadinside",
     responseTime: "Usually within 1 hour",
     status: "online",
   },
@@ -167,7 +167,7 @@ const supportChannels: SupportChannel[] = [
     name: "GitHub Issues",
     description: "Report bugs and request features on our GitHub repository.",
     icon: <Github className="h-5 w-5" />,
-    url: "https://github.com/axyl-os/axyl/issues",
+    url: "https://github.com/axyl-os/axyl-core/issues",
     responseTime: "Within 48 hours",
     status: "online",
   },
@@ -177,7 +177,7 @@ const supportChannels: SupportChannel[] = [
     description:
       "Comprehensive guides and tutorials for all aspects of AxylOS.",
     icon: <Book className="h-5 w-5" />,
-    url: "/docs",
+    url: "https://docs.axyl.org",
     responseTime: "Available 24/7",
     status: "online",
   },
@@ -607,7 +607,9 @@ export default function SupportPage() {
                 </CardHeader>
                 <CardContent>
                   <Button variant="outline" className="w-full" asChild>
-                    <Link href="/docs/installation">View Guide</Link>
+                    <Link href="https://docs.axyl.org/installation">
+                      View Guide
+                    </Link>
                   </Button>
                 </CardContent>
               </Card>
@@ -622,7 +624,9 @@ export default function SupportPage() {
                 </CardHeader>
                 <CardContent>
                   <Button variant="outline" className="w-full" asChild>
-                    <Link href="/docs/troubleshooting">Get Help</Link>
+                    <Link href="https://docs.axyl.org/troubleshooting">
+                      Get Help
+                    </Link>
                   </Button>
                 </CardContent>
               </Card>
@@ -639,7 +643,9 @@ export default function SupportPage() {
                 </CardHeader>
                 <CardContent>
                   <Button variant="outline" className="w-full" asChild>
-                    <Link href="/docs/security">Learn More</Link>
+                    <Link href="https://docs.axyl.org/security">
+                      Learn More
+                    </Link>
                   </Button>
                 </CardContent>
               </Card>
@@ -656,7 +662,9 @@ export default function SupportPage() {
                 </CardHeader>
                 <CardContent>
                   <Button variant="outline" className="w-full" asChild>
-                    <Link href="/community/guidelines">Read Guidelines</Link>
+                    <Link href="https://docs.axyl.org/guidelines">
+                      Read Guidelines
+                    </Link>
                   </Button>
                 </CardContent>
               </Card>
@@ -673,7 +681,7 @@ export default function SupportPage() {
                 </CardHeader>
                 <CardContent>
                   <Button variant="outline" className="w-full" asChild>
-                    <Link href="/docs/api">View API Docs</Link>
+                    <Link href="https://docs.axyl.org/api">View API Docs</Link>
                   </Button>
                 </CardContent>
               </Card>

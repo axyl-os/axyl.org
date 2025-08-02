@@ -308,7 +308,7 @@ export default function CommunityPage() {
                     </div>
                   </div>
                   <Button className="w-full" asChild>
-                    <Link href="https://awfixer.link/discord" target="_blank">
+                    <Link href="https://inv.wtf/deadinside" target="_blank">
                       <MessageCircle className="h-4 w-4 mr-2" />
                       Join Discord Server
                       <ExternalLink className="h-4 w-4 ml-2" />
@@ -347,10 +347,7 @@ export default function CommunityPage() {
                     </div>
                   </div>
                   <Button variant="outline" className="w-full" asChild>
-                    <Link
-                      href="https://github.com/axyl-os/axyl"
-                      target="_blank"
-                    >
+                    <Link href="https://github.com/axyl-os" target="_blank">
                       <Github className="h-4 w-4 mr-2" />
                       View on GitHub
                       <ExternalLink className="h-4 w-4 ml-2" />

@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Terminal, FileText, BookOpen, Download } from "lucide-react";
+import { Terminal, FileText, BookOpen, Download, Users } from "lucide-react";
 import { ThemeToggle } from "@/components/theme-toggle";
 
 function NavigationContent({ bannerClosed }: { bannerClosed: boolean }) {
@@ -44,6 +44,13 @@ function NavigationContent({ bannerClosed }: { bannerClosed: boolean }) {
             >
               <BookOpen className="h-4 w-4" />
               <span>Blog</span>
+            </Link>
+            <Link
+              href="/community"
+              className="flex items-center space-x-1 text-muted-foreground hover:text-foreground transition-colors"
+            >
+              <Users className="h-4 w-4" />
+              <span>Community</span>
             </Link>
           </div>
         </div>

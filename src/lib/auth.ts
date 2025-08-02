@@ -1,4 +1,4 @@
-import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
+import { createServerClient } from "@supabase/ssr";
 import { cookies } from "next/headers";
 import { cache } from "react";
 import { type User, type Session } from "@supabase/supabase-js";
@@ -6,7 +6,21 @@ import { type User, type Session } from "@supabase/supabase-js";
 // Use React cache to avoid multiple Supabase clients being created
 export const createSupabaseServerClient = cache(() => {
   const cookieStore = cookies();
-  return createServerComponentClient({ cookies: () => cookieStore });
+  return createServerClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    {
+      cookies: {
+        get: (key: string) => cookieStore.get(key)?.value,
+        set: (key: string, value: string, options?: any) => {
+          // SSR: cookies are read-only, so set is a no-op here
+        },
+        remove: (key: string, options?: any) => {
+          // SSR: cookies are read-only, so remove is a no-op here
+        },
+      },
+    },
+  );
 });
 
 // Get the current session from server components
