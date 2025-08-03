@@ -56,6 +56,11 @@ export default function HomePage() {
                 Get Started
               </Link>
             </Button>
+            <Button variant="ghost" size="lg" asChild>
+              <Link href="/about">
+                About AxylOS
+              </Link>
+            </Button>
           </div>
         </div>
       </section>
