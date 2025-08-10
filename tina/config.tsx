@@ -10,7 +10,7 @@ import Tag from "./collection/tag";
 const config = defineConfig({
   clientId: process.env.NEXT_PUBLIC_TINA_CLIENT_ID!,
   branch:
-    process.env.NEXT_PUBLIC_TINA_BRANCH! || master
+    process.env.NEXT_PUBLIC_TINA_BRANCH! || master,
   token: process.env.TINA_TOKEN!,
   media: {
     // If you wanted cloudinary do this
