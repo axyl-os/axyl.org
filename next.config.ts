@@ -1,53 +1,47 @@
-import type { NextConfig } from "next";
-import path from "path";
-
+import type { NextConfig } from 'next'
+ 
 const nextConfig: NextConfig = {
-  /* config options here */
-  reactStrictMode: true,
-  experimental: {
-    serverActions: {
-      allowedOrigins: ["localhost:3000", "localhost:3002", "axyl.org"],
-    },
-  },
   images: {
-    domains: ["cdn.discordapp.com"],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'assets.tina.io',
+        port: '',
+      },
+      {
+        protocol: 'https',
+        hostname: 'res.cloudinary.com',
+        port: '',
+      }
+    ],
   },
   async headers() {
+    // these are also defined in the root layout since github pages doesn't support headers
+    const headers = [
+      {
+        key: 'X-Frame-Options',
+        value: 'SAMEORIGIN',
+      },
+      {
+        key: 'Content-Security-Policy',
+        value: "frame-ancestors 'self'",
+      },
+    ];
     return [
       {
-        source: "/api/:path*",
-        headers: [
-          { key: "Access-Control-Allow-Origin", value: "*" },
-          { key: "Access-Control-Allow-Methods", value: "GET, POST, OPTIONS" },
-          {
-            key: "Access-Control-Allow-Headers",
-            value: "Content-Type, Authorization",
-          },
-        ],
+        source: '/(.*)',
+        headers,
       },
     ];
   },
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
-  // Configure webpack to use local styled-jsx implementation
-  webpack: (config: any, { isServer }: { isServer: boolean }) => {
-    // Alias styled-jsx imports to our local implementation
-    const localStyledJsxPath = path.join(__dirname, "src/lib/styled-jsx");
-
-    config.resolve.alias = {
-      ...config.resolve.alias,
-      "styled-jsx": localStyledJsxPath,
-      "styled-jsx/style": path.join(localStyledJsxPath, "style.js"),
-      "styled-jsx/babel": path.join(localStyledJsxPath, "babel.js"),
-      "styled-jsx/macro": path.join(localStyledJsxPath, "macro.js"),
-      // Have client-side code reference the same instance of React as server
-      react: require.resolve("react"),
-      "react-dom": require.resolve("react-dom"),
-    };
-
-    return config;
+  async rewrites() {
+    return [
+      {
+        source: '/admin',
+        destination: '/admin/index.html',
+      },
+    ];
   },
 };
 
-export default nextConfig;
+export default nextConfig
