@@ -10,9 +10,7 @@ import Tag from "./collection/tag";
 const config = defineConfig({
   clientId: process.env.NEXT_PUBLIC_TINA_CLIENT_ID!,
   branch:
-    process.env.NEXT_PUBLIC_TINA_BRANCH! || // custom branch env override
-    process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_REF! || // Vercel branch env
-    process.env.HEAD!, // Netlify branch env
+    process.env.NEXT_PUBLIC_TINA_BRANCH! || master
   token: process.env.TINA_TOKEN!,
   media: {
     // If you wanted cloudinary do this
