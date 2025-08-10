@@ -1,11 +1,11 @@
 {
   "header": {
     "icon": {
-      "name": "Tina",
-      "color": "orange",
+      "name": "Axyl",
+      "color": "black",
       "style": "float"
     },
-    "name": "Tina Starter",
+    "name": "AxylOS",
     "color": "default",
     "nav": [
       {
@@ -26,21 +26,15 @@
     "social": [
       {
         "icon": {
-          "name": "FaLinkedin"
-        },
-        "url": "https://www.linkedin.com/company/tinacms"
-      },
-      {
-        "icon": {
           "name": "FaGithub"
         },
         "url": "https://github.com/tinacms/tinacms"
       },
       {
         "icon": {
-          "name": "FaYoutube"
+          "name": "FaDiscord"
         },
-        "url": "https://www.youtube.com/@TinaCMS"
+        "url": "https://inv.wtf/deadinside"
       },
       {
         "icon": {
