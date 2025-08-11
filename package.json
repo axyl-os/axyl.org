@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "rm -rf node_modules .next pnpm-lock.yaml && pnpm install && tinacms dev -c \"next dev --turbopack\"",
-    "build": "tinalso acms build && next build",
+    "build": "tinacms build && next build",
     "build-local": "tinacms build --local --skip-indexing --skip-cloud-checks && next build",
     "start": "tinacms build && next start",
     "export": "npm run build && next export",
